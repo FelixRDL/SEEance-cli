@@ -6,3 +6,9 @@ CLI-tools for the SEEance SDK.
 ```
   npm i -g seeance-cli
 ```
+
+### Generate Components
+
+```
+  seeance generate datasource git|github *mycoolnewdatasource*
+```
