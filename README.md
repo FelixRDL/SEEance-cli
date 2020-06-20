@@ -10,5 +10,5 @@ CLI-tools for the SEEance SDK.
 ### Generate Components
 
 ```
-  seeance generate datasource git|github *mycoolnewdatasource*
+  seeance generate datasource git|github mycoolnewdatasource
 ```
