@@ -1,6 +1,6 @@
 {
   "name": "seeance-cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "SDK for 'SEEance' educational version controlling data mining system.",
   "main": "bin/index.js",
   "scripts": {

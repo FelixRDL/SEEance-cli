@@ -27,6 +27,7 @@ exports.generateDatasource = async function(title, path, type) {
         fs.writeFileSync(pathLib.join(projectFldr, 'package.json'), pkgContent);
         fs.writeFileSync(pathLib.join(projectFldr, 'index.js'), indexContent);
         fs.copyFileSync(pathLib.join(resFldr, '.gitignore'), pathLib.join(projectFldr, '.gitignore'), projectFldr);
+        fs.copyFileSync(pathLib.join(resFldr, 'test.js'), pathLib.join(projectFldr, 'test.js'), projectFldr);
         console.log("GENERATE: Installing Dependencies... this could take a while...");
         await asyncExec.execShellCommand('cd '+projectFldr + " && npm i");
         console.log("GENERATE: Project created successfully!");

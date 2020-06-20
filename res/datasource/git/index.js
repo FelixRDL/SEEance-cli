@@ -1,4 +1,5 @@
-export default async function(localPath, token) {
+const git = require('simple-git');
+module.exports =  async function(localPath, token=undefined) {
     return new Promise(async (resolve, reject) => {
         /**
          * TODO: Implement your data acquisition logic here.
@@ -8,5 +9,7 @@ export default async function(localPath, token) {
          *
          * Call 'resolve' with the results of the acquisition.
          * */
+
+        reject("Method not yet implemented!");
     });
 }

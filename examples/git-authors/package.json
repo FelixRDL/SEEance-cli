@@ -1,10 +1,10 @@
 {
-  "name": "$NAME",
+  "name": "git-authors",
   "version": "0.0.0",
-  "description": "TODO: add your description here!",
+  "description": "This datasource acquires all distinct authors on the project.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node ./test.js https://github.com/rmccue/test-repository"
+    "test": "node test.js https://github.com/rmccue/test-repository"
   },
   "keywords": [],
   "author": "",

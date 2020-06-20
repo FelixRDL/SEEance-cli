@@ -1,5 +1,7 @@
-export default async function(url, token) {
+const {Octokit} = require("@octokit/rest");
+module.exports = async function(url, token) {
     return new Promise(async (resolve, reject) => {
+        var octo = new Octokit();
         /**
          * TODO: Implement your data acquisition logic here.
          *
@@ -8,5 +10,6 @@ export default async function(url, token) {
          *
          * Resolve with
          * */
+        reject("Method not yet implemented!");
     });
 }
