@@ -1,0 +1,21 @@
+{
+  "name": "$NAME",
+  "version": "0.0.0",
+  "description": "TODO: add your description here!",
+  "main": "lib/index.js",
+  "scripts": {
+    /* TODO */
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodegit": "^0.26.5"
+  },
+  "seeance": {
+    "depends_on": [],
+    "type": "git"
+  }
+
+}
