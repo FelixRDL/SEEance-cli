@@ -7,7 +7,7 @@ const cmd = yargs
     .command('generate <what> <name>')
     .command('generate <what> <type> <name>')
     .command('delete <what> <name>')
-    .command('publish <what>')
+    .command('publish')
     .command('configure --token <token> --url <url>')
     .help()
     .argv
@@ -31,19 +31,7 @@ if(operation == 'generate') {
             break;
     }
 } else if(operation == 'publish') {
-    const what = cmd['what'];
-    switch(what) {
-        case 'datasource':
-        case 'ds':
-                publish.publish(process.cwd());
-            break;
-        case 'preprocessor':
-        case 'pp':
-            throw new Error("Method not implemented");
-            break;
-        case 'analysis':
-        case 'an':
-            throw new Error("Method not implemented");
-            break;
-    }
+    publish.publish(process.cwd()).then(() => {
+        process.exit(0);
+    })
 }

@@ -40,12 +40,14 @@ exports.publish = async function (path) {
         console.log("PUBLISH: Commiting new content...");
         repo = git(targetFldr);
         await repo.add('.');
-        await repo.commit(`Add ${pkg['seeance']['type']} ${pkg['seeance']['name']}`);
+        await repo.commit(`Add ${pkg['seeance']['type']} ${pkg['name']}`);
         return repo.push();
 
-    }).then((resolve, reject) => {
+    }).finally(() => {
         console.log("PUBLISH: Cleaning up...");
-        rimraf(fldr, resolve)
+        rimraf(fldr, () => {
+            console.log("PUBLISH: Done");
+        });
     });
 }
 
