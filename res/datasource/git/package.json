@@ -15,6 +15,6 @@
   },
   "seeance": {
     "depends_on": [],
-    "type": "git"
+    "type": "datasource.git"
   }
 }

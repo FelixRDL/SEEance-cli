@@ -14,6 +14,6 @@
   },
   "seeance": {
     "depends_on": [],
-    "type": "github"
+    "type": "datasource.github"
   }
 }
