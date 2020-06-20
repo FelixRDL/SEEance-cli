@@ -23,8 +23,8 @@ exports.publish = async function (path) {
     }
 
     return new Promise((resolve, reject) => {
-        console.log("PUBLISH: Deleting old directory...");
-        rimraf(fldr, resolve)
+        console.log("PUBLISH: Cleaning up...");
+        rimraf(fldr, {}, () => {resolve();});
     }).then(() => {
         console.log("PUBLISH: Cloning repository...");
         return git().clone(url, fldr)
@@ -35,19 +35,18 @@ exports.publish = async function (path) {
         }
     }).then((resolve, reject) => {
         console.log("PUBLISH: Copying file contents...");
-        ncp.ncp(cwd, pathLib.join(targetFldr, pkg['name']), resolve);
+        return ncp.ncp(cwd, pathLib.join(targetFldr, pkg['name']), resolve);
     }).then(async () => {
         console.log("PUBLISH: Commiting new content...");
         repo = git(targetFldr);
         await repo.add('.');
-        await repo.commit(`Add ${pkg['seeance']['type']} ${pkg['name']}`);
+        await repo.commit(`Add/Update Component:   ${pkg['seeance']['type']} ${pkg['name']}`);
         return repo.push();
-
-    }).finally(() => {
-        console.log("PUBLISH: Cleaning up...");
-        rimraf(fldr, () => {
-            console.log("PUBLISH: Done");
-        });
+    }).then(() => {
+        return new Promise(async function(resolve, reject) {
+            console.log("PUBLISH: Cleaning up...");
+            rimraf(fldr, {}, () => {resolve();});
+        })
     });
 }
 
