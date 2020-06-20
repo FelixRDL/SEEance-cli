@@ -1,3 +1,4 @@
 This cli tool has been created using the following sources:
 - https://developer.okta.com/blog/2019/06/18/command-line-app-with-nodejs
 - https://github.com/angular/angular-cli
+- https://medium.com/@ali.dev/how-to-use-promise-with-exec-in-node-js-a39c4d7bbf77

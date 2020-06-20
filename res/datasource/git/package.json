@@ -4,8 +4,7 @@
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
   "scripts": {
-    /* TODO */
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test.js"
   },
   "keywords": [],
   "author": "",
