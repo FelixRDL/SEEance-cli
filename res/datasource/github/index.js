@@ -1,5 +1,5 @@
 const {Octokit} = require("@octokit/rest");
-module.exports = async function(url, token) {
+module.exports = async function(owner, repo, token=undefined) {
     return new Promise(async (resolve, reject) => {
         var octo = new Octokit();
         /**

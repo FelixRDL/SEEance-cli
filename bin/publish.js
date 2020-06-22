@@ -1,4 +1,4 @@
-const getLine = require('./../lib/getLine');
+const getLine = require('../lib/getLine');
 const git = require('simple-git');
 const rimraf = require('rimraf');
 const pathLib = require('path');

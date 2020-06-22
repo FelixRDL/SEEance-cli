@@ -5,7 +5,8 @@ module.exports = async function (owner, repo, token = undefined) {
         try {
             const issues = await octo.paginate(octo.issues.listForRepo, {
                 owner: owner,
-                repo: repo
+                repo: repo,
+                status: 'all'
             });
             resolve(issues);
         } catch (e) {

@@ -4,13 +4,15 @@ const publish = require("./publish");
 const yargs = require("yargs");
 
 const cmd = yargs
-    .command('generate <what> <name>')
-    .command('generate <what> <type> <name>')
+    .command('generate <what>', 'Generate a new component', () => {
+    })
     .command('delete <what> <name>')
     .command('publish')
     .command('configure --token <token> --url <url>')
     .help()
     .argv
+
+console.log(cmd);
 
 const operation = cmd["_"][0];
 
@@ -19,15 +21,15 @@ if(operation == 'generate') {
     switch(what) {
         case 'datasource':
         case 'ds':
-                generate.generateDatasource(cmd['name'], process.cwd(), cmd['type']);
+                generate.generateDatasource(cmd._[2], process.cwd(), cmd[1]);
             break;
         case 'preprocessor':
         case 'pp':
-            generate.generatePreprocessor(cmd['name'], '.');
+            generate.generatePreprocessor(cmd['name'], process.cwd());
             break;
         case 'analysis':
         case 'an':
-            generate.generateAnalysis(cmd['name'], '.');
+            generate.generateAnalysis(cmd._[1], process.cwd());
             break;
     }
 } else if(operation == 'publish') {
