@@ -1,12 +1,34 @@
-let git = require('simple-git');
-let rimraf = require('rimraf');
-const script = require('./index');
-const path = './.tmp';
+const fs = require('fs');
+const http = require('http');
+const core = require('seeance-analysis-core');
+const analysis = require('./index');
+const analysisPkg = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+const ComponentProvider = core.ComponentProvider;
 
-rimraf(path, ()=> {
-    git().clone(process.argv[2], path).then(async ()=> {
-        const result = await script(path);
-        console.log("DATASOURCE TEST:", result);
-        rimraf(path, () => {});
+runTest();
+
+async function runTest() {
+    const cp = await ComponentProvider({
+        customRepositories: []
     });
-});
+    let sourcesNames = core.getDependencies([], {
+        pkg: analysisPkg
+    });
+    let datasources;
+    let result;
+    await cp.init();
+    datasources = sourcesNames.map((n) => cp.getDatasourceByName(n));
+    result = await core.analyze(process.argv[2], process.argv[3], datasources, [], {
+        pkg: analysisPkg,
+        module: analysis,
+        config: analysisPkg.seeance
+    });
+    // Solution by stackoverflow user JLeXanDR
+    // (https://stackoverflow.com/questions/35995273/how-to-run-html-file-using-node-js)
+    console.log("ANALYSIS TEST: Serving analysis output on http://localhost:8080")
+    http.createServer(function(request, response) {
+        response.writeHeader(200, {"Content-Type": "text/html"});
+        response.write(result);
+        response.end();
+    }).listen(8080);
+}
