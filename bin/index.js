@@ -21,7 +21,7 @@ if(operation == 'generate') {
     switch(what) {
         case 'datasource':
         case 'ds':
-                generate.generateDatasource(cmd._[2], process.cwd(), cmd[1]);
+                generate.generateDatasource(cmd._[2], process.cwd(), cmd._[1]);
             break;
         case 'preprocessor':
         case 'pp':
