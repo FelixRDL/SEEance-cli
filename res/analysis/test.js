@@ -17,7 +17,7 @@ async function runTest() {
     let datasources;
     let result;
     await cp.init();
-    datasources = sourcesNames.map((n) => cp.getDatasourceByName(n));
+    datasources = await Promise.all(sourcesNames.map((n) => cp.getDatasourceByName(n)));
     result = await core.analyze(process.argv[2], process.argv[3], datasources, [], {
         pkg: analysisPkg,
         module: analysis,
