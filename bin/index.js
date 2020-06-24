@@ -12,23 +12,21 @@ const cmd = yargs
     .help()
     .argv
 
-console.log(cmd);
-
 const operation = cmd["_"][0];
 
 if(operation === 'generate') {
     const what = cmd['what'];
     switch(what) {
         case 'datasource':
-        case 'ds':
+        case 'd':
             generate.generateDatasource(cmd._[2], process.cwd(), cmd._[1]);
             break;
         case 'preprocessor':
-        case 'pp':
+        case 'p':
             generate.generatePreprocessor(cmd._[1], process.cwd());
             break;
         case 'analysis':
-        case 'an':
+        case 'a':
             generate.generateAnalysis(cmd._[1], process.cwd());
             break;
     }

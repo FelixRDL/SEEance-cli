@@ -1,5 +1,5 @@
 {
-  "name": "$NAME",
+  "name": "testpp",
   "version": "0.0.0",
   "description": "TODO: add your description here!",
   "main": "lib/index.js",
@@ -16,7 +16,9 @@
     "simple-git": "^2.8.0"
   },
   "seeance": {
-    "depends_on": [],
+    "depends_on": [
+      "install-test"
+    ],
     "produces": [],
     "config_schema": {},
     "type": "preprocessor"
