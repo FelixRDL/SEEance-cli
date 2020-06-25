@@ -22,11 +22,11 @@ async function runTest() {
     let result;
     await cp.init();
     datasources = await Promise.all(sourcesNames.map((n) => cp.getDatasourceByName(n)));
-    result = await core.analyze(process.argv[2], process.argv[3], datasources, {
+    result = await core.analyze(process.argv[2], process.argv[3], datasources, [{
         pkg: preprocessorPkg,
         module: preprocessor,
         config: preprocessorPkg.seeance
-    }, {
+    }], {
         config: {},
         module: (async (i, c, v) => {
             console.log("TEST: PRINT RESULT")

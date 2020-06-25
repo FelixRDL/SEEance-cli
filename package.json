@@ -4,7 +4,8 @@
   "description": "SDK for 'SEEance' educational version controlling data mining system.",
   "main": "bin/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx standard"
   },
   "bin": {
     "seeance": "bin/index.js"
@@ -20,5 +21,12 @@
   },
   "seeance": {
     "type": "debug.datasource.git"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^14.1.1",
+    "eslint-config-standard-jsx": "^8.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
