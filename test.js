@@ -16,12 +16,18 @@ async function runTest () {
   fs.mkdirSync(targetP)
 
   console.log('TEST', 'Testing generate datasources...')
-  await testGenerateDatasources(targetP)
-  console.log('TEST', 'Testing generate preprocessors...')
-  await testGeneratePreprocessors(targetP)
-  console.log('TEST', 'Testing generate analyses...')
-  await testGenerateAnalyses(targetP)
-  rimraf.sync(targetP)
+  testGenerateDatasources(targetP)
+    .then(async () => {
+      console.log('TEST', 'Testing generate preprocessors...')
+      return testGeneratePreprocessors(targetP)
+    })
+    .then(async () => {
+      console.log('TEST', 'Testing generate analyses...')
+      return testGenerateAnalyses(targetP)
+    })
+    .then(() => {
+      rimraf.sync(targetP)
+    })
 }
 
 async function testGenerateDatasources (targetP) {

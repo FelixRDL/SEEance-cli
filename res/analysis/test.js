@@ -23,10 +23,14 @@ async function runTest () {
   })
   // Solution by stackoverflow user JLeXanDR
   // (https://stackoverflow.com/questions/35995273/how-to-run-html-file-using-node-js)
-  console.log('ANALYSIS TEST: Serving analysis output on http://localhost:8080')
-  http.createServer(function (request, response) {
-    response.writeHeader(200, { 'Content-Type': 'text/html' })
-    response.write(result)
-    response.end()
-  }).listen(8080)
+  if (process.argv.includes('--serve')) {
+    console.log('ANALYSIS TEST: Serving analysis output on http://localhost:8080')
+    http.createServer(function (request, response) {
+      response.writeHeader(200, { 'Content-Type': 'text/html' })
+      response.write(result)
+      response.end()
+    }).listen(8080)
+  } else {
+    process.exit(0)
+  }
 }

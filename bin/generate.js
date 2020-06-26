@@ -35,6 +35,7 @@ exports.generateDatasource = async function (title, path, type) {
     console.log('GENERATE: Project created successfully!')
     return Promise.resolve()
   } catch (e) {
+    console.error(e)
     return Promise.reject(e)
   }
 }
@@ -60,6 +61,7 @@ exports.generatePreprocessor = async function (title, path) {
     console.log('GENERATE: Project created successfully!')
     return Promise.resolve()
   } catch (e) {
+    console.error(e)
     return Promise.reject(e)
   }
 }
@@ -84,6 +86,7 @@ exports.generateAnalysis = async function (title, path) {
     console.log('GENERATE: Project created successfully!')
     return Promise.resolve()
   } catch (e) {
+    console.error(e)
     return Promise.reject(e)
   }
 }
