@@ -11,6 +11,16 @@ exports.publish = async function () {
   let targetFldr
   const url = `https://${creds.user}:${creds.pw}@${creds.url}`
   const cwd = process.cwd()
+
+  /**
+   *
+   * @type {{
+   *    name: string
+   *   seeance: {
+   *     type: string
+   *   }
+   * }}
+   */
   const pkg = JSON.parse(fs.readFileSync(pathLib.join(cwd, 'package.json'), 'utf-8'))
 
   if (pkg.seeance.type.includes('datasource')) {
@@ -24,7 +34,13 @@ exports.publish = async function () {
 
   return new Promise((resolve, reject) => {
     console.log('PUBLISH: Cleaning up...')
-    rimraf(fldr, {}, () => { resolve() })
+    rimraf(fldr, {}, (err) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve()
+      }
+    })
   }).then(() => {
     console.log('PUBLISH: Cloning repository...')
     return git().clone(url, fldr)
@@ -35,31 +51,43 @@ exports.publish = async function () {
     }
   }).then((resolve, reject) => {
     console.log('PUBLISH: Copying file contents...')
-    return ncp.ncp(cwd, pathLib.join(targetFldr, pkg.name), resolve)
+    return ncp.ncp(cwd, pathLib.join(targetFldr, pkg.name), (err) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve()
+      }
+    })
   }).then(async () => {
     console.log('PUBLISH: Commiting new content...')
-    repo = git(targetFldr)
+    const repo = git(targetFldr)
     await repo.add('.')
     await repo.commit(`Add/Update Component:   ${pkg.seeance.type} ${pkg.name}`)
     return repo.push()
   }).then(() => {
-    return new Promise(async function (resolve, reject) {
+    return new Promise(function (resolve, reject) {
       console.log('PUBLISH: Cleaning up...')
-      rimraf(fldr, {}, () => { resolve() })
+      rimraf(fldr, {}, (err) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve()
+        }
+      })
     })
   })
 }
 
 async function getCredentials () {
-  console.log("Please enter your component repository locator ('github.com/OWNER/REPO_NAME'):")
-  github_url = await getLine()
+  console.log('Please enter your component repository locator (\'github.com/OWNER/REPO_NAME\'):')
+  const githubUrl = await getLine()
   console.log('Please enter your github username:')
-  github_user = await getLine()
+  const githubUser = await getLine()
   console.log('Please enter your github password:')
-  github_pw = await getLine(true)
+  const githubPassword = await getLine(true)
   return {
-    url: github_url,
-    user: github_user,
-    pw: github_pw
+    url: githubUrl,
+    user: githubUser,
+    pw: githubPassword
   }
 }

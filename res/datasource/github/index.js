@@ -1,8 +1,6 @@
-const {Octokit} = require("@octokit/rest");
-module.exports = async function(owner, repo, token=undefined) {
-    return new Promise(async (resolve, reject) => {
-        var octo = new Octokit();
-        /**
+module.exports = async function (owner, repo, token = undefined) {
+  return new Promise((resolve, reject) => {
+    /**
          * TODO: Implement your data acquisition logic here.
          *
          * You can use octokit/rest (pre-installed) or any other github library. Make sure to install them properly
@@ -10,6 +8,6 @@ module.exports = async function(owner, repo, token=undefined) {
          *
          * Resolve with
          * */
-        reject("Method not yet implemented!");
-    });
+    reject(new Error('Method not yet implemented!'))
+  })
 }

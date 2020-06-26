@@ -4,6 +4,8 @@ const pathLib = require('path')
 const asyncExec = require('../lib/promisifyExec')
 /*
  * This script is meant to generate new skeleton projects for various elements of the analysis.
+ *
+ * TODO: lots of duplicate code in here, should be refactored
  */
 
 /**
@@ -18,8 +20,8 @@ exports.generateDatasource = async function (title, path, type) {
     const resFldr = pathLib.join(__dirname, '..', 'res', 'datasource', type)
     const projectFldr = await makeProjectFolder(title, path)
     console.log('GENERATE: Reading Skeleton Files...')
-    var indexContent = fs.readFileSync(pathLib.join(resFldr, 'index.js'), 'utf-8')
-    var pkgContent = fs.readFileSync(pathLib.join(resFldr, 'package.json'), 'utf-8')
+    const indexContent = fs.readFileSync(pathLib.join(resFldr, 'index.js'), 'utf-8')
+    let pkgContent = fs.readFileSync(pathLib.join(resFldr, 'package.json'), 'utf-8')
     console.log('GENERATE: Substituting Placeholders...')
     pkgContent = pkgContent.replace('$NAME', title)
     console.log('GENERATE: Creating Files...')
@@ -42,8 +44,8 @@ exports.generatePreprocessor = async function (title, path) {
     const resFldr = pathLib.join(__dirname, '..', 'res', 'preprocessor')
     const projectFldr = await makeProjectFolder(title, path)
     console.log('GENERATE: Reading Skeleton Files...')
-    var indexContent = fs.readFileSync(pathLib.join(resFldr, 'index.js'), 'utf-8')
-    var pkgContent = fs.readFileSync(pathLib.join(resFldr, 'package.json'), 'utf-8')
+    const indexContent = fs.readFileSync(pathLib.join(resFldr, 'index.js'), 'utf-8')
+    let pkgContent = fs.readFileSync(pathLib.join(resFldr, 'package.json'), 'utf-8')
     console.log('GENERATE: Substituting Placeholders...')
     pkgContent = pkgContent.replace('$NAME', title)
     console.log('GENERATE: Creating Files...')
@@ -65,8 +67,8 @@ exports.generateAnalysis = async function (title, path) {
     const resFldr = pathLib.join(__dirname, '..', 'res', 'analysis')
     const projectFldr = await makeProjectFolder(title, path)
     console.log('GENERATE: Reading Skeleton Files...')
-    var indexContent = fs.readFileSync(pathLib.join(resFldr, 'index.js'), 'utf-8')
-    var pkgContent = fs.readFileSync(pathLib.join(resFldr, 'package.json'), 'utf-8')
+    const indexContent = fs.readFileSync(pathLib.join(resFldr, 'index.js'), 'utf-8')
+    let pkgContent = fs.readFileSync(pathLib.join(resFldr, 'package.json'), 'utf-8')
     console.log('GENERATE: Substituting Placeholders...')
     pkgContent = pkgContent.replace('$NAME', title)
     console.log('GENERATE: Creating Files...')

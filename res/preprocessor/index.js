@@ -1,8 +1,8 @@
-module.exports =  async function(input, config) {
-    return new Promise(async (resolve, reject) => {
-        /**
+module.exports = async function (input, config) {
+  return new Promise((resolve, reject) => {
+    /**
          * TODO: Implement your preprocessing step here.
          * */
-        reject("Method not yet implemented!");
-    });
+    reject(new Error('Method not yet implemented!'))
+  })
 }
