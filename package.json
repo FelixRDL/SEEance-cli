@@ -4,8 +4,9 @@
   "description": "SDK for 'SEEance' educational version controlling data mining system.",
   "main": "bin/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "npx standard"
+    "test": "node ./test rmccue test-repository",
+    "lint": "npx standard",
+    "prepublish": "npm test && npm run lint"
   },
   "bin": {
     "seeance": "bin/index.js"

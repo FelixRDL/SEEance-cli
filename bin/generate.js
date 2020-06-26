@@ -18,7 +18,7 @@ exports.generateDatasource = async function (title, path, type) {
   try {
     console.log('GENERATE: Getting Folders...')
     const resFldr = pathLib.join(__dirname, '..', 'res', 'datasource', type)
-    const projectFldr = await makeProjectFolder(title, path)
+    const projectFldr = makeProjectFolder(title, path)
     console.log('GENERATE: Reading Skeleton Files...')
     const indexContent = fs.readFileSync(pathLib.join(resFldr, 'index.js'), 'utf-8')
     let pkgContent = fs.readFileSync(pathLib.join(resFldr, 'package.json'), 'utf-8')
@@ -33,8 +33,9 @@ exports.generateDatasource = async function (title, path, type) {
     console.log('GENERATE: Installing Dependencies... this could take a while...')
     await asyncExec.execShellCommand('cd ' + projectFldr + ' && npm i')
     console.log('GENERATE: Project created successfully!')
+    return Promise.resolve()
   } catch (e) {
-    console.error(e)
+    return Promise.reject(e)
   }
 }
 
@@ -42,7 +43,7 @@ exports.generatePreprocessor = async function (title, path) {
   try {
     console.log('GENERATE: Getting Folders...')
     const resFldr = pathLib.join(__dirname, '..', 'res', 'preprocessor')
-    const projectFldr = await makeProjectFolder(title, path)
+    const projectFldr = makeProjectFolder(title, path)
     console.log('GENERATE: Reading Skeleton Files...')
     const indexContent = fs.readFileSync(pathLib.join(resFldr, 'index.js'), 'utf-8')
     let pkgContent = fs.readFileSync(pathLib.join(resFldr, 'package.json'), 'utf-8')
@@ -57,15 +58,16 @@ exports.generatePreprocessor = async function (title, path) {
     console.log('GENERATE: Installing Dependencies... this could take a while...')
     await asyncExec.execShellCommand('cd ' + projectFldr + ' && npm i')
     console.log('GENERATE: Project created successfully!')
+    return Promise.resolve()
   } catch (e) {
-    console.error(e)
+    return Promise.reject(e)
   }
 }
 exports.generateAnalysis = async function (title, path) {
   try {
     console.log('GENERATE: Getting Folders...')
     const resFldr = pathLib.join(__dirname, '..', 'res', 'analysis')
-    const projectFldr = await makeProjectFolder(title, path)
+    const projectFldr = makeProjectFolder(title, path)
     console.log('GENERATE: Reading Skeleton Files...')
     const indexContent = fs.readFileSync(pathLib.join(resFldr, 'index.js'), 'utf-8')
     let pkgContent = fs.readFileSync(pathLib.join(resFldr, 'package.json'), 'utf-8')
@@ -80,8 +82,9 @@ exports.generateAnalysis = async function (title, path) {
     console.log('GENERATE: Installing Dependencies... this could take a while...')
     await asyncExec.execShellCommand('cd ' + projectFldr + ' && npm i')
     console.log('GENERATE: Project created successfully!')
+    return Promise.resolve()
   } catch (e) {
-    console.error(e)
+    return Promise.reject(e)
   }
 }
 
