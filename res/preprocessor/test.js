@@ -10,7 +10,8 @@ runTest().then(() => {
 
 async function runTest () {
   const cp = await ComponentProvider({
-    customRepositories: []
+    customRepositories: [],
+    onlyLoad: preprocessorPkg.seeance.depends_on
   })
   const sourcesNames = core.getDependencies([
     {

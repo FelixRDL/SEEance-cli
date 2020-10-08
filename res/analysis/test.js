@@ -12,7 +12,8 @@ async function runTest () {
     customRepositories: []
   })
   const sourcesNames = core.getDependencies([], {
-    pkg: analysisPkg
+    pkg: analysisPkg,
+    onlyLoad: analysisPkg.seeance.depends_on
   })
   await cp.init()
   const datasources = await Promise.all(sourcesNames.map((n) => cp.getDatasourceByName(n)))
