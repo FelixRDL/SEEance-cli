@@ -13,13 +13,7 @@ async function runTest () {
     customRepositories: [],
     onlyLoad: preprocessorPkg.seeance.depends_on
   })
-  const sourcesNames = core.getDependencies([
-    {
-      pkg: preprocessorPkg
-    }
-  ], {
-    pkg: preprocessorPkg
-  })
+  const sourcesNames = preprocessorPkg.seeance.depends_on
   await cp.init()
   const datasources = await Promise.all(sourcesNames.map((n) => cp.getDatasourceByName(n)))
   return core.analyze(process.argv[2], process.argv[3], datasources, [{

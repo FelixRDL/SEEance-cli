@@ -3,6 +3,6 @@ module.exports = async function (input, config) {
     /**
          * TODO: Implement your preprocessing step here.
          * */
-    resolve(input)
+    reject(new Error('Method not yet implemented!'))
   })
 }
