@@ -17,9 +17,9 @@ async function runTest () {
   await cp.init()
   const datasources = await Promise.all(sourcesNames.map((n) => cp.getDatasourceByName(n)))
   return core.analyze(process.argv[2], process.argv[3], datasources, [{
-    pkg: preprocessorPkg,
+    package: preprocessorPkg,
     module: preprocessor,
-    config: preprocessorPkg.seeance
+    config: undefined
   }], {
     config: {},
     module: async (i, c, v) => {
