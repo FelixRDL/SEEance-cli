@@ -26,6 +26,10 @@ async function runTest () {
       console.log('TEST: PRINT RESULT')
       console.log(i)
       return Promise.resolve('success')
+    },
+    package: {
+      name: 'x',
+      seeance: {}
     }
   })
 }
